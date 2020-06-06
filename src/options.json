@@ -23,16 +23,12 @@
       "anyOf": [
         {
           "type": "string",
-          "minLength": 7
+          "minLength": 4
         },
         {
           "enum": ["simple", "sqrt", "dominant"]
         }
       ]
-    },
-    "mode": {
-      "description": "Mode to compute color.",
-      "enum": ["precision", "speed"]
     }
   }
 }
