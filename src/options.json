@@ -1,0 +1,38 @@
+{
+  "additionalProperties": true,
+  "type": "object",
+  "properties": {
+    "format": {
+      "description": "Format of output",
+      "enum": ["base64", "hex", "rgb", "array"]
+    },
+    "size": {
+      "description": "Size of output image. Only apply when the format is base64",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 1
+        },
+        {
+          "enum": ["original"]
+        }
+      ]
+    },
+    "color": {
+      "description": "Color of output image.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 7
+        },
+        {
+          "enum": ["simple", "sqrt", "dominant"]
+        }
+      ]
+    },
+    "mode": {
+      "description": "Mode to compute color.",
+      "enum": ["precision", "speed"]
+    }
+  }
+}

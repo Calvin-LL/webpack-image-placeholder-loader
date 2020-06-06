@@ -11,7 +11,7 @@
     "image",
     "placeholder"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest"
@@ -36,6 +36,9 @@
   "homepage": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader",
   "license": "AGPL-3.0",
   "devDependencies": {
+    "@types/loader-utils": "^2.0.0",
+    "@types/node": "^14.0.11",
+    "@types/webpack": "^4.41.17",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
     "husky": "^4.2.5",
@@ -48,5 +51,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "loader-utils": "^2.0.0",
+    "schema-utils": "^2.7.0"
   }
 }
