@@ -1,0 +1,52 @@
+{
+  "name": "image-placeholder-webpack-loader",
+  "version": "1.0.0",
+  "description": "Generate a solid color image as placeholder",
+  "keywords": [
+    "webpack",
+    "loader",
+    "pixel",
+    "solid",
+    "color",
+    "image",
+    "placeholder"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "author": {
+    "name": "Calvin Liang",
+    "email": "npm@calvin.sh",
+    "url": "https://calvin.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoolCyberBrain/image-placeholder-webpack-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader/issues"
+  },
+  "homepage": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
