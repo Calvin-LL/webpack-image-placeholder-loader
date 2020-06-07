@@ -21,10 +21,7 @@ interface OPTIONS {
   esModule: boolean;
 }
 
-export default async function (
-  this: loader.LoaderContext,
-  content: ArrayBuffer
-) {
+export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const callback = this.async();
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
 
@@ -38,11 +35,32 @@ export default async function (
   const size = options?.size ?? 1;
   const color = options?.color ?? "sqrt";
   const backgroundColor = options?.backgroundColor ?? "#FFF";
-  const esModule = options?.esModule ?? true;
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 
+  processImage(content, { format, size, color, backgroundColor })
+    .then((result) => {
+      const esModule = options?.esModule ?? true;
+
+      callback?.(
+        null,
+        `${esModule ? "export default" : "module.exports ="} ${JSON.stringify(
+          result
+        )}`
+      );
+    })
+    .catch((e) => {
+      throw e;
+    });
+}
+
+export const raw = true;
+
+async function processImage(
+  content: ArrayBuffer,
+  { format, size, color, backgroundColor }: Omit<Readonly<OPTIONS>, "esModule">
+) {
   const { rgb: resultColor, size: imageSize } = await getColor(
     Buffer.from(content),
     color,
@@ -51,15 +69,8 @@ export default async function (
 
   const result = await getResult(resultColor, size, format, imageSize);
 
-  callback?.(
-    null,
-    `${esModule ? "export default" : "module.exports ="} ${JSON.stringify(
-      result
-    )}`
-  );
+  return result;
 }
-
-export const raw = true;
 
 async function getColor(
   buffer: Buffer,
@@ -149,14 +160,16 @@ function validateColor(color: OPTIONS["color"]) {
       if (tc.isValid()) return true;
 
       throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
-      - options.color ${color} is not a valid color.`;
+      - options.color ${JSON.stringify(color)} is not a valid color.`;
   }
 }
 
 function validatebackgroundColor(backgroundColor: OPTIONS["backgroundColor"]) {
   const tc = tinycolor(backgroundColor);
-  if (tc.isValid()) return true;
+  if (tc.isValid() && tc.getAlpha() === 1) return true;
 
   throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
-      - options.backgroundColor ${backgroundColor} is not a valid color.`;
+      - options.backgroundColor ${JSON.stringify(
+        backgroundColor
+      )} is not a valid color.`;
 }
