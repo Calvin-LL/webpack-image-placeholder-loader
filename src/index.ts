@@ -79,16 +79,16 @@ async function getColor(
 ) {
   const tcColor = tinycolor(color);
 
+  const backgroundColorRgb = rgbaToRgb(tinycolor(backgroundColor).toRgb());
+
   const sharpImage = sharp(buffer);
   const { height, width } = await sharpImage.metadata();
 
   if (tcColor.isValid())
     return {
-      rgb: rgbaToRgb(tcColor.toRgb()),
+      rgb: mixRgbaWithRgb(tcColor.toRgb(), backgroundColorRgb),
       size: { width, height },
     };
-
-  const backgroundColorRgb = rgbaToRgb(tinycolor(backgroundColor).toRgb());
 
   const data = await sharpImage
     .flatten({ background: backgroundColorRgb })
@@ -119,7 +119,7 @@ async function getResult(
 
   if (format === "rgb") return tcColor.toRgbString();
   if (format === "hex") return tcColor.toHexString();
-  if (format === "array") return rgbToRgbaArray(tcColor.toRgb());
+  if (format === "array") return rgbToRgbArray(tcColor.toRgb());
 
   const width = size === "original" ? imageSize.width : size;
   const height = size === "original" ? imageSize.height : size;
@@ -142,8 +142,37 @@ function rgbToRgbaArray(rgb: tinycolor.ColorFormats.RGB) {
   return [rgb.r, rgb.g, rgb.b, 255] as IFastAverageColorRgba;
 }
 
+function rgbToRgbArray(rgb: tinycolor.ColorFormats.RGB) {
+  return [rgb.r, rgb.g, rgb.b];
+}
+
 function rgbaToRgb({ r, g, b }: tinycolor.ColorFormats.RGBA) {
   return { r, g, b };
+}
+
+function mixRgbaWithRgb(
+  { r: r1, g: g1, b: b1, a }: tinycolor.ColorFormats.RGBA,
+  { r: r2, g: g2, b: b2 }: tinycolor.ColorFormats.RGB
+) {
+  return {
+    r: mixColorVale(r1, r2, a),
+    g: mixColorVale(g1, g2, a),
+    b: mixColorVale(b1, b2, a),
+  };
+}
+
+function mixColorVale(
+  foregroundColor: number,
+  backgroundColor: number,
+  alpha: number
+) {
+  return Math.max(
+    0,
+    Math.min(
+      Math.round(foregroundColor * alpha + backgroundColor * (1 - alpha)),
+      255
+    )
+  );
 }
 
 function validateColor(color: OPTIONS["color"]) {
