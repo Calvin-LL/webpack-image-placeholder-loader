@@ -40,6 +40,9 @@
   },
   "homepage": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader",
   "license": "AGPL-3.0",
+  "engines": {
+    "node": ">= 10.13.0"
+  },
   "peerDependencies": {
     "webpack": "^4.0.0 || ^5.0.0"
   },
