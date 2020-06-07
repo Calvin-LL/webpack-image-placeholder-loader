@@ -22,13 +22,23 @@
       "description": "Color of output image.",
       "anyOf": [
         {
-          "type": "string",
-          "minLength": 4
+          "type": "string"
         },
-        {
-          "enum": ["simple", "sqrt", "dominant"]
-        }
+        { "type": "object" }
       ]
+    },
+    "backgroundColor": {
+      "description": "Color of background if image contains transparency.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        { "type": "object" }
+      ]
+    },
+    "esModule": {
+      "description": "By default, image-placeholder-webpack-loader generates JS modules that use the ES modules syntax.",
+      "type": "boolean"
     }
   }
 }

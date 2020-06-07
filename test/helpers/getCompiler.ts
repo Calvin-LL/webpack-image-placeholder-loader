@@ -8,7 +8,7 @@ export default (loaderOptions: any) => {
     mode: "production",
     devtool: false,
     context: path.resolve(__dirname, "../fixtures"),
-    entry: path.resolve(__dirname, "../fixtures", "test.js"),
+    entry: path.resolve(__dirname, "../fixtures", "simple.js"),
     output: {
       path: path.resolve(__dirname, "../outputs"),
       filename: "[name].bundle.js",

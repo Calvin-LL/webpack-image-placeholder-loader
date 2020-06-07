@@ -45,20 +45,26 @@
   },
   "dependencies": {
     "loader-utils": "^2.0.0",
-    "schema-utils": "^2.7.0"
+    "schema-utils": "^2.7.0",
+    "sharp": "^0.25.3",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "@types/loader-utils": "^2.0.0",
     "@types/node": "^14.0.11",
+    "@types/sharp": "^0.25.0",
+    "@types/tinycolor2": "^1.4.2",
     "@types/webpack": "^4.41.17",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
+    "fast-average-color": "^6.0.2",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "memfs": "^3.2.0",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0"
   }
 }

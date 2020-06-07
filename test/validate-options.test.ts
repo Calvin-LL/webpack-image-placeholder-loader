@@ -14,8 +14,32 @@ describe("validate options", () => {
       failure: [0, -1],
     },
     color: {
-      success: ["simple", "sqrt", "dominant", "#000", "#038281"],
-      failure: [true, "#0"],
+      success: [
+        "simple",
+        "sqrt",
+        "dominant",
+        "#000",
+        "#038281",
+        "#03828110",
+        { r: 2, g: 120, b: 24 },
+        "red",
+      ],
+      failure: [true, "#0", "#MMMMMM", { r: 2, g: 120, b: 280 }],
+    },
+    backgroundColor: {
+      success: ["#000", "#038281", { r: 2, g: 120, b: 24 }, "red"],
+      failure: [
+        true,
+        "#0",
+        "#MMMMMM",
+        "#03828110",
+        { r: 2, g: 120, b: 280 },
+        { r: 2, g: 120, b: 24, a: 0.5 },
+      ],
+    },
+    esModule: {
+      success: [true, false],
+      failure: ["true"],
     },
   };
 
