@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"backgroundColor" option should work with "object" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+
+exports[`"backgroundColor" option should work with "string" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+
+exports[`"backgroundColor" option should work with transparent color: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12NgaGAAAAEEAIGh1dj6AAAAAElFTkSuQmCC"`;
+
+exports[`"backgroundColor" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"format" option should work with "array" value: result 1`] = `
+Array [
+  107,
+  117,
+  72,
+]
+`;
+
+exports[`"format" option should work with "base64" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+
+exports[`"format" option should work with "hex" value: result 1`] = `"#6b7548"`;
+
+exports[`"format" option should work with "rgb" value: result 1`] = `"rgb(107, 117, 72)"`;
+
+exports[`"format" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;

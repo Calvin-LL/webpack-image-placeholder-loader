@@ -3,9 +3,9 @@ import path from "path";
 import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
 
-export default (loaderOptions: any) => {
+export default (loaderOptions?: any) => {
   const fullConfig = {
-    mode: "production",
+    mode: "development",
     devtool: false,
     context: path.resolve(__dirname, "../fixtures"),
     entry: path.resolve(__dirname, "../fixtures", "simple.js"),

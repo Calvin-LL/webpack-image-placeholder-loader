@@ -24,7 +24,7 @@ describe("validate options", () => {
         { r: 2, g: 120, b: 24 },
         "red",
       ],
-      failure: [true, "#0", "#MMMMMM", { r: 2, g: 120, b: 280 }],
+      failure: [true, "#0", "#MMMMMM"],
     },
     backgroundColor: {
       success: ["#000", "#038281", { r: 2, g: 120, b: 24 }, "red"],
@@ -33,7 +33,6 @@ describe("validate options", () => {
         "#0",
         "#MMMMMM",
         "#03828110",
-        { r: 2, g: 120, b: 280 },
         { r: 2, g: 120, b: 24, a: 0.5 },
       ],
     },
@@ -43,14 +42,14 @@ describe("validate options", () => {
     },
   };
 
-  async function createTestCase(
+  function createTestCase(
     key: string,
     value: any,
     type: "success" | "failure"
   ) {
     it(`should ${
       type === "success" ? "successfully validate" : "throw an error on"
-    } the "${key}" option with "${value}" value`, async () => {
+    } the "${key}" option with ${JSON.stringify(value)} value`, async () => {
       const compiler = getCompiler({ [key]: value });
 
       let stats;
@@ -71,7 +70,7 @@ describe("validate options", () => {
           }).toThrowErrorMatchingSnapshot();
         }
       }
-    });
+    }, 60000);
   }
 
   for (const [key, values] of Object.entries(tests)) {
