@@ -55,7 +55,7 @@ exports[`validate options should throw an error on the "color" option with true 
 exports[`validate options should throw an error on the "esModule" option with "true" value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
  - options.esModule should be a boolean.
-   -> By default, image-placeholder-webpack-loader generates JS modules that use the ES modules syntax."
+   -> By default, webpack-image-placeholder-loader generates JS modules that use the ES modules syntax."
 `;
 
 exports[`validate options should throw an error on the "format" option with true value 1`] = `

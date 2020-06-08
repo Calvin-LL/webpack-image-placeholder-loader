@@ -1,5 +1,5 @@
 {
-  "name": "image-placeholder-webpack-loader",
+  "name": "webpack-image-placeholder-loader",
   "version": "1.0.0",
   "description": "Generate a solid color image as placeholder",
   "keywords": [
@@ -14,7 +14,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && jest"
+    "test": "tsc && jest",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -31,15 +32,10 @@
     "email": "npm@calvin.sh",
     "url": "https://calvin.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CoolCyberBrain/image-placeholder-webpack-loader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader/issues"
-  },
-  "homepage": "https://github.com/CoolCyberBrain/image-placeholder-webpack-loader",
-  "license": "AGPL-3.0",
+  "repository": "CoolCyberBrain/webpack-image-placeholder-loader",
+  "bugs": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/issues",
+  "homepage": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader",
+  "license": "MIT",
   "engines": {
     "node": ">= 10.13.0"
   },
@@ -66,6 +62,7 @@
     "jest": "^26.0.1",
     "memfs": "^3.2.0",
     "prettier": "^2.0.5",
+    "standard-version": "^8.0.0",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0"

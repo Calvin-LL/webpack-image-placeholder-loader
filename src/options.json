@@ -37,7 +37,7 @@
       ]
     },
     "esModule": {
-      "description": "By default, image-placeholder-webpack-loader generates JS modules that use the ES modules syntax.",
+      "description": "By default, webpack-image-placeholder-loader generates JS modules that use the ES modules syntax.",
       "type": "boolean"
     }
   }
