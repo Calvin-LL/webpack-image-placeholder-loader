@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsc",
     "test": "tsc && jest",
-    "release": "standard-version"
+    "release": "standard-version --no-verify"
   },
   "husky": {
     "hooks": {
