@@ -21,6 +21,7 @@ interface OPTIONS {
   esModule: boolean;
 }
 
+export const raw = true;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const callback = this.async();
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
@@ -54,8 +55,6 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
       throw e;
     });
 }
-
-export const raw = true;
 
 async function processImage(
   content: ArrayBuffer,
