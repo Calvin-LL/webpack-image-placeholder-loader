@@ -6,9 +6,16 @@ import sharp from "sharp";
 import tinycolor from "tinycolor2";
 import { loader } from "webpack";
 
+import {
+  mixRgbaWithRgb,
+  rgbToRgbArray,
+  rgbToRgbaArray,
+  rgbaToRgb,
+} from "./helpers/color";
+import { validateColor, validatebackgroundColor } from "./helpers/validation";
 import schema from "./options.json";
 
-interface OPTIONS {
+export interface OPTIONS {
   format: "base64" | "hex" | "rgb" | "array";
   size: number | "original";
   color:
@@ -135,69 +142,4 @@ async function getResult(
       .png()
       .toBuffer()
   ).toString("base64")}`;
-}
-
-function rgbToRgbaArray(rgb: tinycolor.ColorFormats.RGB) {
-  return [rgb.r, rgb.g, rgb.b, 255] as IFastAverageColorRgba;
-}
-
-function rgbToRgbArray(rgb: tinycolor.ColorFormats.RGB) {
-  return [rgb.r, rgb.g, rgb.b];
-}
-
-function rgbaToRgb({ r, g, b }: tinycolor.ColorFormats.RGBA) {
-  return { r, g, b };
-}
-
-function mixRgbaWithRgb(
-  { r: r1, g: g1, b: b1, a }: tinycolor.ColorFormats.RGBA,
-  { r: r2, g: g2, b: b2 }: tinycolor.ColorFormats.RGB
-) {
-  return {
-    r: mixColorVale(r1, r2, a),
-    g: mixColorVale(g1, g2, a),
-    b: mixColorVale(b1, b2, a),
-  };
-}
-
-function mixColorVale(
-  foregroundColor: number,
-  backgroundColor: number,
-  alpha: number
-) {
-  return Math.max(
-    0,
-    Math.min(
-      Math.round(foregroundColor * alpha + backgroundColor * (1 - alpha)),
-      255
-    )
-  );
-}
-
-function validateColor(color: OPTIONS["color"]) {
-  switch (color) {
-    case "simple":
-      return true;
-    case "sqrt":
-      return true;
-    case "dominant":
-      return true;
-
-    default:
-      const tc = tinycolor(color);
-      if (tc.isValid()) return true;
-
-      throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
-      - options.color ${JSON.stringify(color)} is not a valid color.`;
-  }
-}
-
-function validatebackgroundColor(backgroundColor: OPTIONS["backgroundColor"]) {
-  const tc = tinycolor(backgroundColor);
-  if (tc.isValid() && tc.getAlpha() === 1) return true;
-
-  throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
-      - options.backgroundColor ${JSON.stringify(
-        backgroundColor
-      )} is not a valid color.`;
 }
