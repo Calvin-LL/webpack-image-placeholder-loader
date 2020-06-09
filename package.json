@@ -14,8 +14,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "tsc && jest",
-    "release": "standard-version --no-verify"
+    "test": "jest",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version"
   },
   "husky": {
     "hooks": {
