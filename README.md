@@ -92,6 +92,12 @@ module.exports = {
 import placeholderUrl from "./some_pic.png?placeholder";
 ```
 
+To override options for one import, you can use queries
+
+```javascript
+import placeholderUrl from "./some_pic.png?placeholder&size=original";
+```
+
 ### Other usage for Webpack v4
 
 With default options:
