@@ -42,7 +42,7 @@ yarn add webpack-query-loader --dev
 
 #### Step 2
 
-##### Configure webpack-query-loader
+##### Configure [webpack-query-loader](https://github.com/CoolCyberBrain/webpack-query-loader)
 
 ```javascript
 module.exports = {
