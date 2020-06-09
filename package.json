@@ -46,6 +46,7 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
+    "fast-average-color": "^6.0.2",
     "loader-utils": "^2.0.0",
     "schema-utils": "^2.7.0",
     "sharp": "^0.25.3",
@@ -60,7 +61,6 @@
     "@types/webpack": "^4.41.17",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
-    "fast-average-color": "^6.0.2",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "memfs": "^3.2.0",
