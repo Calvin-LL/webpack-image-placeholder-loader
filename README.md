@@ -50,7 +50,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(png|jpe?g|svg)/i,
+        test: /\.(png|jpe?g|svg)/i,
         use: [
           {
             loader: "webpack-query-loader",
@@ -114,7 +114,7 @@ import placeholderUrl from "!!webpack-image-placeholder-loader!./some_pic.png?fo
 
 ### Recommanded usage for Webpack v5
 
-Just use resourceQuery
+Same as Webpack v4 but use resourceQuery instead of webpack-query-loader
 
 ## Options
 
