@@ -47,8 +47,6 @@ jobs:
       - run: npm ci
       - name: Build
         run: npm run build
-      - name: Run tests
-        run: npm test
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
