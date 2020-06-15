@@ -49,7 +49,7 @@
     "fast-average-color": "^6.0.2",
     "loader-utils": "^2.0.0",
     "schema-utils": "^2.7.0",
-    "sharp": "^0.25.3",
+    "sharp": "^0.25.4",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
