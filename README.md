@@ -1,4 +1,6 @@
-# webpack-image-placeholder-loader [![npm](https://img.shields.io/npm/v/webpack-image-placeholder-loader)](https://www.npmjs.com/package/webpack-image-placeholder-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
+# webpack-image-placeholder-loader
+
+[![npm](https://img.shields.io/npm/v/webpack-image-placeholder-loader)](https://www.npmjs.com/package/webpack-image-placeholder-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 This loader generates a color or solid color image from a given image for use as a placeholder.
 
