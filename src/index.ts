@@ -1,3 +1,4 @@
+import merge from "deepmerge";
 import FastAverageColor from "fast-average-color";
 import loaderUtils from "loader-utils";
 import validateOptions from "schema-utils";
@@ -32,28 +33,27 @@ export const raw = true;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const callback = this.async();
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
-  const params = this.resourceQuery
+  const queryObject = this.resourceQuery
     ? (loaderUtils.parseQuery(this.resourceQuery) as Partial<OPTIONS>)
     : undefined;
+  const fullOptions = merge(options ?? {}, queryObject ?? {});
 
-  if (options)
-    validateOptions(schema as JSONSchema7, options, {
-      name: "Image Placeholder Loader",
-      baseDataPath: "options",
-    });
+  validateOptions(schema as JSONSchema7, fullOptions, {
+    name: "Image Placeholder Loader",
+    baseDataPath: "options",
+  });
 
-  const format = params?.format ?? options?.format ?? "base64";
-  const size = params?.size ?? options?.size ?? 1;
-  const color = params?.color ?? options?.color ?? "sqrt";
-  const backgroundColor =
-    params?.backgroundColor ?? options?.backgroundColor ?? "#FFF";
+  const format = fullOptions.format ?? "base64";
+  const size = fullOptions.size ?? 1;
+  const color = fullOptions.color ?? "sqrt";
+  const backgroundColor = fullOptions.backgroundColor ?? "#FFF";
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 
   processImage(content, { format, size, color, backgroundColor })
     .then((result) => {
-      const esModule = params?.esModule ?? options?.esModule ?? true;
+      const esModule = fullOptions.esModule ?? true;
 
       callback?.(
         null,
