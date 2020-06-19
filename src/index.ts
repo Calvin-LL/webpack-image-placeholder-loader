@@ -32,9 +32,10 @@ export const raw = true;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const callback = this.async();
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
-  const params = this.resourceQuery
+  const queryObject = this.resourceQuery
     ? (loaderUtils.parseQuery(this.resourceQuery) as Partial<OPTIONS>)
     : undefined;
+  const fullOptions: Partial<OPTIONS> = { ...options, ...queryObject };
 
   if (options)
     validateOptions(schema as JSONSchema7, options, {
@@ -42,18 +43,17 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
       baseDataPath: "options",
     });
 
-  const format = params?.format ?? options?.format ?? "base64";
-  const size = params?.size ?? options?.size ?? 1;
-  const color = params?.color ?? options?.color ?? "sqrt";
-  const backgroundColor =
-    params?.backgroundColor ?? options?.backgroundColor ?? "#FFF";
+  const format = fullOptions.format ?? "base64";
+  const size = fullOptions.size ?? 1;
+  const color = fullOptions.color ?? "sqrt";
+  const backgroundColor = fullOptions.backgroundColor ?? "#FFF";
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 
   processImage(content, { format, size, color, backgroundColor })
     .then((result) => {
-      const esModule = params?.esModule ?? options?.esModule ?? true;
+      const esModule = queryObject?.esModule ?? fullOptions?.esModule ?? true;
 
       callback?.(
         null,
