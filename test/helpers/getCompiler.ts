@@ -4,13 +4,14 @@ import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
 
 export default (loaderOptions?: any) => {
+  const fixturesDir = path.resolve(__dirname, "..", "fixtures");
   const fullConfig = {
-    mode: "development",
+    mode: "production",
     devtool: false,
-    context: path.resolve(__dirname, "../fixtures"),
-    entry: path.resolve(__dirname, "../fixtures", "simple.js"),
+    context: fixturesDir,
+    entry: path.resolve(fixturesDir, "simple.js"),
     output: {
-      path: path.resolve(__dirname, "../outputs"),
+      path: path.resolve(__dirname, "..", "outputs"),
       filename: "[name].bundle.js",
       chunkFilename: "[name].chunk.js",
     },
@@ -20,7 +21,7 @@ export default (loaderOptions?: any) => {
           test: /(png|jpg|svg)/i,
           rules: [
             {
-              loader: path.resolve(__dirname, "../../dist"),
+              loader: path.resolve(__dirname, "..", "..", "dist"),
               options: loaderOptions,
             },
           ],
