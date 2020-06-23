@@ -1,6 +1,6 @@
 # webpack-image-placeholder-loader
 
-[![npm](https://img.shields.io/npm/v/webpack-image-placeholder-loader)](https://www.npmjs.com/package/webpack-image-placeholder-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![npm](https://img.shields.io/npm/v/webpack-image-placeholder-loader?style=flat)](https://www.npmjs.com/package/webpack-image-placeholder-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 This loader generates a color or solid color image from a given image for use as a placeholder.
 
@@ -13,7 +13,7 @@ Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 Install with npm:
 
 ```bash
-npm install --save-dev webpack-image-placeholder-loader
+npm install webpack-image-placeholder-loader --save-dev
 ```
 
 Install with yarn:
@@ -33,7 +33,7 @@ yarn add webpack-image-placeholder-loader --dev
 Install with npm:
 
 ```bash
-npm install --save-dev webpack-query-loader
+npm install webpack-query-loader --save-dev
 ```
 
 Install with yarn:
@@ -45,6 +45,8 @@ yarn add webpack-query-loader --dev
 #### Step 2
 
 ##### Configure [webpack-query-loader](https://github.com/CoolCyberBrain/webpack-query-loader)
+
+###### webpack.config.js
 
 ```javascript
 module.exports = {
