@@ -2,6 +2,14 @@
 
 exports[`"esModule" option should work with "Boolean" value equal "false": result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
 
-exports[`"esModule" option should work with "Boolean" value equal "true": result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+exports[`"esModule" option should work with "Boolean" value equal "true": result 1`] = `
+Object {
+  "default": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC",
+}
+`;
 
-exports[`"esModule" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+exports[`"esModule" option should work without value: result 1`] = `
+Object {
+  "default": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC",
+}
+`;

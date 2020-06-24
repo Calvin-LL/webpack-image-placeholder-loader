@@ -7,7 +7,7 @@ import readAsset from "./helpers/readAsset";
 
 describe('"esModule" option', () => {
   it("should work without value", async () => {
-    const compiler = getCompiler();
+    const compiler = getCompiler(undefined, "simple-require.js");
     const stats = (await compile(compiler)) as webpack.Stats;
 
     expect(
@@ -16,9 +16,12 @@ describe('"esModule" option', () => {
   });
 
   it('should work with "Boolean" value equal "true"', async () => {
-    const compiler = getCompiler({
-      esModule: true,
-    });
+    const compiler = getCompiler(
+      {
+        esModule: true,
+      },
+      "simple-require.js"
+    );
     const stats = (await compile(compiler)) as webpack.Stats;
 
     expect(
@@ -27,9 +30,12 @@ describe('"esModule" option', () => {
   });
 
   it('should work with "Boolean" value equal "false"', async () => {
-    const compiler = getCompiler({
-      esModule: false,
-    });
+    const compiler = getCompiler(
+      {
+        esModule: false,
+      },
+      "simple-require.js"
+    );
     const stats = (await compile(compiler)) as webpack.Stats;
 
     expect(
