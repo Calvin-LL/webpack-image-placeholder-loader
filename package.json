@@ -1,6 +1,6 @@
 {
   "name": "webpack-image-placeholder-loader",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "Generate a solid color image as placeholder",
   "keywords": [
     "webpack",
