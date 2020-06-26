@@ -4,7 +4,7 @@
 
 This loader generates a color or solid color image from a given image for use as a placeholder.
 
-Under the hood this package uses [fast-average-color](https://github.com/fast-average-color/fast-average-color). See [fast-average-color](https://github.com/fast-average-color/fast-average-color) for examples of colors derived from images.
+Under the hood this package uses [fast-average-color](https://github.com/fast-average-color/fast-average-color). See [fast-average-color](https://github.com/fast-average-color/fast-average-color) for [examples](https://github.com/fast-average-color/fast-average-color) of colors derived from images.
 
 Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 
