@@ -7,3 +7,8 @@ updates:
       time: "13:00"
     open-pull-requests-limit: 10
     versioning-strategy: widen_ranges
+    ignore:
+      - dependency-name: "webpack"
+        versions: ["5.x"]
+      - dependency-name: "schema-utils"
+        versions: ["3.x"]
