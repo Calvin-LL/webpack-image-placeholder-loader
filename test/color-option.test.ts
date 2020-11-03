@@ -5,10 +5,10 @@ import execute from "./helpers/execute";
 import getCompiler from "./helpers/getCompiler";
 import readAsset from "./helpers/readAsset";
 
-describe('"color" option', () => {
+describe.each([4, 5] as const)('v%d "color" option', (webpackVersion) => {
   it("should work without value", async () => {
-    const compiler = getCompiler({});
-    const stats = await compile(compiler);
+    const compiler = getCompiler(webpackVersion, {});
+    const stats = await compile(webpackVersion, compiler);
 
     expect(
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
@@ -16,10 +16,10 @@ describe('"color" option', () => {
   });
 
   it('should work with "string" value', async () => {
-    const compiler = getCompiler({
+    const compiler = getCompiler(webpackVersion, {
       color: "blue",
     });
-    const stats = await compile(compiler);
+    const stats = await compile(webpackVersion, compiler);
 
     expect(
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
@@ -27,10 +27,10 @@ describe('"color" option', () => {
   });
 
   it('should work with "object" value', async () => {
-    const compiler = getCompiler({
+    const compiler = getCompiler(webpackVersion, {
       color: { r: 255, g: 255, b: 255 },
     });
-    const stats = await compile(compiler);
+    const stats = await compile(webpackVersion, compiler);
 
     expect(
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))

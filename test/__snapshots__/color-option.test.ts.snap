@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`"color" option should work with "object" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC"`;
+exports[`v4 "color" option should work with "object" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC"`;
 
-exports[`"color" option should work with "string" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12NgYPgPAAEDAQDZqt2zAAAAAElFTkSuQmCC"`;
+exports[`v4 "color" option should work with "string" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12NgYPgPAAEDAQDZqt2zAAAAAElFTkSuQmCC"`;
 
-exports[`"color" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+exports[`v4 "color" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+
+exports[`v5 "color" option should work with "object" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC"`;
+
+exports[`v5 "color" option should work with "string" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12NgYPgPAAEDAQDZqt2zAAAAAElFTkSuQmCC"`;
+
+exports[`v5 "color" option should work without value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
