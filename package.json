@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "tsc && jest",
+    "test-no-build": "jest",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version"
   },
   "config": {
@@ -43,7 +44,7 @@
   "dependencies": {
     "fast-average-color": "^6.2.0",
     "loader-utils": "^2.0.0",
-    "schema-utils": "^2.7.1",
+    "schema-utils": "^3.0.0",
     "sharp": "^0.26.2",
     "tinycolor2": "^1.4.2"
   },

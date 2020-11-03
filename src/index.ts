@@ -1,7 +1,7 @@
 import FastAverageColor from "fast-average-color";
 import loaderUtils from "loader-utils";
-import validateOptions from "schema-utils";
-import { JSONSchema7 } from "schema-utils/declarations/validate";
+import { validate } from "schema-utils";
+import { Schema } from "schema-utils/declarations/validate";
 import sharp from "sharp";
 import tinycolor from "tinycolor2";
 import { loader } from "webpack";
@@ -38,7 +38,7 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const fullOptions: Partial<OPTIONS> = { ...options, ...queryObject };
 
   if (options)
-    validateOptions(schema as JSONSchema7, options, {
+    validate(schema as Schema, options, {
       name: "Image Placeholder Loader",
       baseDataPath: "options",
     });
