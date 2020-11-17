@@ -28,7 +28,7 @@ yarn add webpack-image-placeholder-loader --dev
 
 #### Step 1
 
-##### Install [webpack-query-loader](https://github.com/CoolCyberBrain/webpack-query-loader)
+##### Install [webpack-query-loader](https://github.com/Calvin-LL/webpack-query-loader)
 
 Install with npm:
 
@@ -44,7 +44,7 @@ yarn add webpack-query-loader --dev
 
 #### Step 2
 
-##### Configure [webpack-query-loader](https://github.com/CoolCyberBrain/webpack-query-loader)
+##### Configure [webpack-query-loader](https://github.com/Calvin-LL/webpack-query-loader)
 
 ###### webpack.config.js
 
