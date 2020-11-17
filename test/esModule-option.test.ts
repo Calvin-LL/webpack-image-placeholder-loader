@@ -7,11 +7,7 @@ import readAsset from "./helpers/readAsset";
 
 describe.each([4, 5] as const)('v%d "esModule" option', (webpackVersion) => {
   it("should work without value", async () => {
-    const compiler = getCompiler(
-      webpackVersion,
-      undefined,
-      "simple-require.js"
-    );
+    const compiler = getCompiler(webpackVersion, undefined, "index-require.js");
     const stats = (await compile(webpackVersion, compiler)) as webpack.Stats;
 
     expect(
@@ -25,7 +21,7 @@ describe.each([4, 5] as const)('v%d "esModule" option', (webpackVersion) => {
       {
         esModule: true,
       },
-      "simple-require.js"
+      "index-require.js"
     );
     const stats = (await compile(webpackVersion, compiler)) as webpack.Stats;
 
@@ -40,7 +36,7 @@ describe.each([4, 5] as const)('v%d "esModule" option', (webpackVersion) => {
       {
         esModule: false,
       },
-      "simple-require.js"
+      "index-require.js"
     );
     const stats = (await compile(webpackVersion, compiler)) as webpack.Stats;
 

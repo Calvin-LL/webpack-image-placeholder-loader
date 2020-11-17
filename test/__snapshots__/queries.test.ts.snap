@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`v4 queries should be overridden by json query \`{"r":255,"g":255,"b":255}\`: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC"`;
+
+exports[`v4 queries should be overridden by query size=10: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAEklEQVQY02PILvXAgxhGpbEhABTcc6F8SgGHAAAAAElFTkSuQmCC"`;
+
+exports[`v5 queries should be overridden by json query \`{"r":255,"g":255,"b":255}\`: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC"`;
+
+exports[`v5 queries should be overridden by query size=10: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAEklEQVQY02PILvXAgxhGpbEhABTcc6F8SgGHAAAAAElFTkSuQmCC"`;
