@@ -35,7 +35,10 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const queryObject = this.resourceQuery
     ? (loaderUtils.parseQuery(this.resourceQuery) as Partial<OPTIONS>)
     : undefined;
-  const fullOptions: Partial<OPTIONS> = { ...options, ...queryObject };
+  const fullOptions: Partial<OPTIONS> = {
+    ...options,
+    ...attemptToConvertValuesToNumbers(queryObject),
+  };
 
   if (options)
     validate(schema as Schema, options, {
@@ -146,4 +149,23 @@ async function getResult(
       .png()
       .toBuffer()
   ).toString("base64")}`;
+}
+
+function attemptToConvertValuesToNumbers(object: any | undefined) {
+  const result = { ...object };
+
+  Object.keys(result).forEach((key) => {
+    if (isNumeric(result[key])) {
+      result[key] = Number(result[key]);
+    }
+  });
+
+  return result;
+}
+
+// https://stackoverflow.com/a/175787
+function isNumeric(string: string) {
+  if (typeof string !== "string") return false;
+  // @ts-expect-error
+  return !isNaN(string) && !isNaN(parseFloat(string));
 }
