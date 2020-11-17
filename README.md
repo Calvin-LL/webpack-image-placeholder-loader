@@ -56,6 +56,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|svg|gif|webp|tiff?)/i,
         use: [
+          // if import has query "?placeholder"
           {
             loader: "webpack-query-loader",
             options: {
