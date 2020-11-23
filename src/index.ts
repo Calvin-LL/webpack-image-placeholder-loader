@@ -29,7 +29,10 @@ export interface OPTIONS {
 }
 
 export const raw = true;
-export default function (this: loader.LoaderContext, content: ArrayBuffer) {
+export default function (
+  this: loader.LoaderContext,
+  content: ArrayBuffer
+): void {
   const callback = this.async();
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
   const queryObject = this.resourceQuery
@@ -73,7 +76,7 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
 async function processImage(
   content: ArrayBuffer,
   { format, size, color, backgroundColor }: Omit<Readonly<OPTIONS>, "esModule">
-) {
+): Promise<string | [number, number, number]> {
   const { rgb: resultColor, size: imageSize } = await getColor(
     Buffer.from(content),
     color,
@@ -89,7 +92,13 @@ async function getColor(
   buffer: Buffer,
   color: OPTIONS["color"],
   backgroundColor: OPTIONS["backgroundColor"]
-) {
+): Promise<{
+  rgb: tinycolor.ColorFormats.RGB;
+  size: {
+    width: number | undefined;
+    height: number | undefined;
+  };
+}> {
   const tcColor = tinycolor(color);
 
   const backgroundColorRgb = rgbaToRgb(tinycolor(backgroundColor).toRgb());
@@ -127,7 +136,7 @@ async function getResult(
   size: OPTIONS["size"],
   format: OPTIONS["format"],
   imageSize: { width: number | undefined; height: number | undefined }
-) {
+): Promise<string | [number, number, number]> {
   const tcColor = tinycolor(color);
 
   if (format === "rgb") return tcColor.toRgbString();
@@ -151,7 +160,7 @@ async function getResult(
   ).toString("base64")}`;
 }
 
-function attemptToConvertValuesToNumbers(object: any | undefined) {
+function attemptToConvertValuesToNumbers(object: any | undefined): any {
   const result = { ...object };
 
   Object.keys(result).forEach((key) => {
@@ -164,8 +173,8 @@ function attemptToConvertValuesToNumbers(object: any | undefined) {
 }
 
 // https://stackoverflow.com/a/175787
-function isNumeric(string: string) {
+function isNumeric(string: string): boolean {
   if (typeof string !== "string") return false;
-  // @ts-expect-error
+  // @ts-expect-error using isNaN to test string, works but typescript doesn't like
   return !isNaN(string) && !isNaN(parseFloat(string));
 }

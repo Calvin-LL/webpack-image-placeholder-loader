@@ -1,19 +1,27 @@
-export function rgbToRgbaArray(rgb: tinycolor.ColorFormats.RGB) {
+export function rgbToRgbaArray(
+  rgb: tinycolor.ColorFormats.RGB
+): IFastAverageColorRgba {
   return [rgb.r, rgb.g, rgb.b, 255] as IFastAverageColorRgba;
 }
 
-export function rgbToRgbArray(rgb: tinycolor.ColorFormats.RGB) {
+export function rgbToRgbArray(
+  rgb: tinycolor.ColorFormats.RGB
+): [number, number, number] {
   return [rgb.r, rgb.g, rgb.b];
 }
 
-export function rgbaToRgb({ r, g, b }: tinycolor.ColorFormats.RGBA) {
+export function rgbaToRgb({
+  r,
+  g,
+  b,
+}: tinycolor.ColorFormats.RGBA): tinycolor.ColorFormats.RGB {
   return { r, g, b };
 }
 
 export function mixRgbaWithRgb(
   { r: r1, g: g1, b: b1, a }: tinycolor.ColorFormats.RGBA,
   { r: r2, g: g2, b: b2 }: tinycolor.ColorFormats.RGB
-) {
+): tinycolor.ColorFormats.RGB {
   return {
     r: mixColorVale(r1, r2, a),
     g: mixColorVale(g1, g2, a),
@@ -25,7 +33,7 @@ export function mixColorVale(
   foregroundColor: number,
   backgroundColor: number,
   alpha: number
-) {
+): number {
   return Math.max(
     0,
     Math.min(

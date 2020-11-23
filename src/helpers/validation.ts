@@ -2,7 +2,7 @@ import tinycolor from "tinycolor2";
 
 import { OPTIONS } from "../index";
 
-export function validateColor(color: OPTIONS["color"]) {
+export function validateColor(color: OPTIONS["color"]): true {
   switch (color) {
     case "simple":
       return true;
@@ -10,19 +10,19 @@ export function validateColor(color: OPTIONS["color"]) {
       return true;
     case "dominant":
       return true;
-
-    default:
+    default: {
       const tc = tinycolor(color);
       if (tc.isValid()) return true;
 
       throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
       - options.color ${JSON.stringify(color)} is not a valid color.`;
+    }
   }
 }
 
 export function validatebackgroundColor(
   backgroundColor: OPTIONS["backgroundColor"]
-) {
+): true {
   const tc = tinycolor(backgroundColor);
   if (tc.isValid() && tc.getAlpha() === 1) return true;
 
