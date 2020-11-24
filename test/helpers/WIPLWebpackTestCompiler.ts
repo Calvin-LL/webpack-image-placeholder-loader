@@ -24,7 +24,7 @@ export default class WIPLWebpackTestCompiler extends WebpackTestCompiler {
           test: /(png|jpg|svg)/i,
           rules: [
             {
-              loader: path.resolve(__dirname, "..", "..", "dist"),
+              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
               options: loaderOptions,
             },
           ],
