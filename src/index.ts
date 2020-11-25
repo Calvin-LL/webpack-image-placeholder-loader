@@ -37,7 +37,7 @@ export default function (
   this: loader.LoaderContext,
   content: ArrayBuffer
 ): void {
-  const callback = this.async();
+  const callback = this.async() as loader.loaderCallback;
   const defaultOptions: FullOptions = {
     format: "base64",
     size: 1,
@@ -62,7 +62,7 @@ export default function (
 
   processImage(content, { format, size, color, backgroundColor })
     .then((result) => {
-      callback?.(
+      callback(
         null,
         `${esModule ? "export default" : "module.exports ="} ${JSON.stringify(
           result
