@@ -23,13 +23,13 @@ export function mixRgbaWithRgb(
   { r: r2, g: g2, b: b2 }: tinycolor.ColorFormats.RGB
 ): tinycolor.ColorFormats.RGB {
   return {
-    r: mixColorVale(r1, r2, a),
-    g: mixColorVale(g1, g2, a),
-    b: mixColorVale(b1, b2, a),
+    r: mixColorValues(r1, r2, a),
+    g: mixColorValues(g1, g2, a),
+    b: mixColorValues(b1, b2, a),
   };
 }
 
-export function mixColorVale(
+export function mixColorValues(
   foregroundColor: number,
   backgroundColor: number,
   alpha: number

@@ -1,10 +1,11 @@
 import FastAverageColor from "fast-average-color";
-import loaderUtils from "loader-utils";
 import { validate } from "schema-utils";
 import { Schema } from "schema-utils/declarations/validate";
 import sharp from "sharp";
 import tinycolor from "tinycolor2";
 import { loader } from "webpack";
+
+import { getOptions } from "@calvin-l/webpack-loader-util";
 
 import {
   mixRgbaWithRgb,
@@ -34,32 +35,24 @@ export default function (
   content: ArrayBuffer
 ): void {
   const callback = this.async();
-  const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
-  const queryObject = this.resourceQuery
-    ? (loaderUtils.parseQuery(this.resourceQuery) as Partial<OPTIONS>)
-    : undefined;
-  const fullOptions: Partial<OPTIONS> = {
-    ...options,
-    ...attemptToConvertValuesToNumbers(queryObject),
-  };
+  const options = getOptions<Readonly<OPTIONS>>(this, true, true);
 
-  if (options)
-    validate(schema as Schema, options, {
-      name: "Image Placeholder Loader",
-      baseDataPath: "options",
-    });
+  validate(schema as Schema, options, {
+    name: "Image Placeholder Loader",
+    baseDataPath: "options",
+  });
 
-  const format = fullOptions.format ?? "base64";
-  const size = fullOptions.size ?? 1;
-  const color = fullOptions.color ?? "sqrt";
-  const backgroundColor = fullOptions.backgroundColor ?? "#FFF";
+  const format = options.format ?? "base64";
+  const size = options.size ?? 1;
+  const color = options.color ?? "sqrt";
+  const backgroundColor = options.backgroundColor ?? "#FFF";
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 
   processImage(content, { format, size, color, backgroundColor })
     .then((result) => {
-      const esModule = queryObject?.esModule ?? fullOptions?.esModule ?? true;
+      const esModule = options?.esModule ?? options?.esModule ?? true;
 
       callback?.(
         null,
@@ -77,40 +70,25 @@ async function processImage(
   content: ArrayBuffer,
   { format, size, color, backgroundColor }: Omit<Readonly<OPTIONS>, "esModule">
 ): Promise<string | [number, number, number]> {
-  const { rgb: resultColor, size: imageSize } = await getColor(
-    Buffer.from(content),
-    color,
-    backgroundColor
-  );
+  const sharpImage = sharp(Buffer.from(content));
+  const resultColor = await getColor(sharpImage, color, backgroundColor);
+  const imageSize = await getSize(sharpImage);
+  const output = await getOutput(resultColor, size, format, imageSize);
 
-  const result = await getResult(resultColor, size, format, imageSize);
-
-  return result;
+  return output;
 }
 
 async function getColor(
-  buffer: Buffer,
+  sharpImage: sharp.Sharp,
   color: OPTIONS["color"],
   backgroundColor: OPTIONS["backgroundColor"]
-): Promise<{
-  rgb: tinycolor.ColorFormats.RGB;
-  size: {
-    width: number | undefined;
-    height: number | undefined;
-  };
-}> {
+): Promise<tinycolor.ColorFormats.RGB> {
   const tcColor = tinycolor(color);
 
   const backgroundColorRgb = rgbaToRgb(tinycolor(backgroundColor).toRgb());
 
-  const sharpImage = sharp(buffer);
-  const { height, width } = await sharpImage.metadata();
-
   if (tcColor.isValid())
-    return {
-      rgb: mixRgbaWithRgb(tcColor.toRgb(), backgroundColorRgb),
-      size: { width, height },
-    };
+    return mixRgbaWithRgb(tcColor.toRgb(), backgroundColorRgb);
 
   const data = await sharpImage
     .flatten({ background: backgroundColorRgb })
@@ -125,13 +103,24 @@ async function getColor(
   });
   fac.destroy();
 
-  return {
-    rgb: { r: resultRgba[0], g: resultRgba[1], b: resultRgba[2] },
-    size: { width, height },
-  };
+  return { r: resultRgba[0], g: resultRgba[1], b: resultRgba[2] };
 }
 
-async function getResult(
+async function getSize(
+  sharpImage: sharp.Sharp
+): Promise<{
+  width: number | undefined;
+  height: number | undefined;
+}> {
+  const { height, width } = await sharpImage.metadata();
+
+  return { width, height };
+}
+
+/**
+ * combine all the given information to generate the final output of this loader
+ */
+async function getOutput(
   color: tinycolor.ColorFormats.RGB,
   size: OPTIONS["size"],
   format: OPTIONS["format"],
@@ -158,23 +147,4 @@ async function getResult(
       .png()
       .toBuffer()
   ).toString("base64")}`;
-}
-
-function attemptToConvertValuesToNumbers(object: any | undefined): any {
-  const result = { ...object };
-
-  Object.keys(result).forEach((key) => {
-    if (isNumeric(result[key])) {
-      result[key] = Number(result[key]);
-    }
-  });
-
-  return result;
-}
-
-// https://stackoverflow.com/a/175787
-function isNumeric(string: string): boolean {
-  if (typeof string !== "string") return false;
-  // @ts-expect-error using isNaN to test string, works but typescript doesn't like
-  return !isNaN(string) && !isNaN(parseFloat(string));
 }
