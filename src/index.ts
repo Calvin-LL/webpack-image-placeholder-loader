@@ -35,12 +35,15 @@ export default function (
   content: ArrayBuffer
 ): void {
   const callback = this.async();
-  const options: Readonly<OPTIONS> = {
+  const defaultOptions: Readonly<OPTIONS> = {
     format: "base64",
     size: 1,
     color: "sqrt",
     backgroundColor: "#FFF",
     esModule: true,
+  };
+  const options: Readonly<OPTIONS> = {
+    ...defaultOptions,
     ...getOptions<Readonly<Partial<OPTIONS>>>(this, true, true),
   };
 
