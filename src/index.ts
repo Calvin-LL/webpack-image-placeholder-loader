@@ -16,35 +16,38 @@ import {
 import { validateColor, validatebackgroundColor } from "./helpers/validation";
 import schema from "./options.json";
 
-export interface OPTIONS {
-  format: "base64" | "hex" | "rgb" | "array";
-  size: number | "original";
-  color:
+export interface Options {
+  readonly format?: "base64" | "hex" | "rgb" | "array";
+  readonly size?: number | "original";
+  readonly color?:
     | string
     | "simple"
     | "sqrt"
     | "dominant"
     | tinycolor.ColorInputWithoutInstance;
-  backgroundColor: string | tinycolor.ColorInputWithoutInstance;
-  esModule: boolean;
+  readonly backgroundColor?: string | tinycolor.ColorInputWithoutInstance;
+  readonly esModule?: boolean;
 }
 
+export type FullOptions = Required<Options>;
+
 export const raw = true;
+
 export default function (
   this: loader.LoaderContext,
   content: ArrayBuffer
 ): void {
   const callback = this.async();
-  const defaultOptions: Readonly<OPTIONS> = {
+  const defaultOptions: FullOptions = {
     format: "base64",
     size: 1,
     color: "sqrt",
     backgroundColor: "#FFF",
     esModule: true,
   };
-  const options: Readonly<OPTIONS> = {
+  const options: FullOptions = {
     ...defaultOptions,
-    ...getOptions<Readonly<Partial<OPTIONS>>>(this, true, true),
+    ...getOptions<Options>(this, true, true),
   };
 
   validate(schema as Schema, options, {
@@ -73,7 +76,7 @@ export default function (
 
 async function processImage(
   content: ArrayBuffer,
-  { format, size, color, backgroundColor }: Omit<Readonly<OPTIONS>, "esModule">
+  { format, size, color, backgroundColor }: Omit<FullOptions, "esModule">
 ): Promise<string | [number, number, number]> {
   const sharpImage = sharp(Buffer.from(content));
   const resultColor = await getColor(sharpImage, color, backgroundColor);
@@ -85,8 +88,8 @@ async function processImage(
 
 async function getColor(
   sharpImage: sharp.Sharp,
-  color: OPTIONS["color"],
-  backgroundColor: OPTIONS["backgroundColor"]
+  color: FullOptions["color"],
+  backgroundColor: FullOptions["backgroundColor"]
 ): Promise<tinycolor.ColorFormats.RGB> {
   const tcColor = tinycolor(color);
 
@@ -127,8 +130,8 @@ async function getSize(
  */
 async function getOutput(
   color: tinycolor.ColorFormats.RGB,
-  size: OPTIONS["size"],
-  format: OPTIONS["format"],
+  size: FullOptions["size"],
+  format: FullOptions["format"],
   imageSize: { width: number | undefined; height: number | undefined }
 ): Promise<string | [number, number, number]> {
   const tcColor = tinycolor(color);

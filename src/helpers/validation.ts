@@ -1,8 +1,8 @@
 import tinycolor from "tinycolor2";
 
-import { OPTIONS } from "../index";
+import { FullOptions } from "../index";
 
-export function validateColor(color: OPTIONS["color"]): true {
+export function validateColor(color: FullOptions["color"]): true {
   switch (color) {
     case "simple":
       return true;
@@ -21,7 +21,7 @@ export function validateColor(color: OPTIONS["color"]): true {
 }
 
 export function validatebackgroundColor(
-  backgroundColor: OPTIONS["backgroundColor"]
+  backgroundColor: FullOptions["backgroundColor"]
 ): true {
   const tc = tinycolor(backgroundColor);
   if (tc.isValid() && tc.getAlpha() === 1) return true;
