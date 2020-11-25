@@ -35,25 +35,27 @@ export default function (
   content: ArrayBuffer
 ): void {
   const callback = this.async();
-  const options = getOptions<Readonly<OPTIONS>>(this, true, true);
+  const options: Readonly<OPTIONS> = {
+    format: "base64",
+    size: 1,
+    color: "sqrt",
+    backgroundColor: "#FFF",
+    esModule: true,
+    ...getOptions<Readonly<Partial<OPTIONS>>>(this, true, true),
+  };
 
   validate(schema as Schema, options, {
     name: "Image Placeholder Loader",
     baseDataPath: "options",
   });
 
-  const format = options.format ?? "base64";
-  const size = options.size ?? 1;
-  const color = options.color ?? "sqrt";
-  const backgroundColor = options.backgroundColor ?? "#FFF";
+  const { format, size, color, backgroundColor, esModule } = options;
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 
   processImage(content, { format, size, color, backgroundColor })
     .then((result) => {
-      const esModule = options?.esModule ?? options?.esModule ?? true;
-
       callback?.(
         null,
         `${esModule ? "export default" : "module.exports ="} ${JSON.stringify(
