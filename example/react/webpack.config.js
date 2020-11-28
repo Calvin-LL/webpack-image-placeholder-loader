@@ -7,9 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     filename: "main.js",
   },
-  resolve: {
-    extensions: ["*", ".js", ".jsx"],
-  },
   module: {
     rules: [
       {
@@ -19,26 +16,19 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g)/i,
-        use: [
+        oneOf: [
           {
-            loader: "webpack-query-loader",
-            options: {
-              resourceQuery: "placeholder",
-              use: {
-                loader: "webpack-image-placeholder-loader",
-                options: {
-                  format: "hex",
-                },
+            resourceQuery: /placeholder/,
+            use: {
+              loader: "webpack-image-placeholder-loader",
+              options: {
+                format: "hex",
               },
             },
           },
           {
-            loader: "webpack-query-loader",
-            options: {
-              resourceQuery: "!placeholder",
-              use: {
-                loader: "file-loader",
-              },
+            use: {
+              loader: "file-loader",
             },
           },
         ],
