@@ -5,7 +5,7 @@ import imagePlaceholder from "./assets/Macaca_nigra_self-portrait_large.jpg?plac
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <img
         style={{ width: 728, height: 1007, backgroundColor: imagePlaceholder }}
         src={image}
