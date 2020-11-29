@@ -20,18 +20,20 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|svg|gif|webp|tiff?)$/i,
-        resourceQuery: /placeholder/,
-        use: {
-          loader: "webpack-image-placeholder-loader",
-          options: {
-            format: "hex",
+        oneOf: [
+          {
+            resourceQuery: /placeholder/,
+            use: {
+              loader: "webpack-image-placeholder-loader",
+              options: {
+                format: "hex",
+              },
+            },
           },
-        },
-      },
-      {
-        test: /\.(png|jpe?g|svg|gif|webp|tiff?)$/i,
-        resourceQuery: { not: [/placeholder/] },
-        use: "file-loader",
+          {
+            use: "file-loader",
+          },
+        ],
       },
     ],
   },
