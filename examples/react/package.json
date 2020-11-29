@@ -1,13 +1,10 @@
 {
   "name": "react-example",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "build": "webpack"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
