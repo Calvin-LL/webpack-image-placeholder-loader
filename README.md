@@ -36,10 +36,10 @@ yarn add webpack-image-placeholder-loader --dev
 
 ```javascript
 module.exports = {
-  ...
+  // ...
   module: {
     rules: [
-      ...
+      // ...
       {
         test: /\.(png|jpe?g|svg|gif|webp|tiff?)$/i,
         oneOf: [
@@ -62,7 +62,6 @@ module.exports = {
     ],
   },
 };
-
 ```
 
 #### Step 2

@@ -22,6 +22,7 @@ module.exports = {
         test: /\.(png|jpe?g|svg|gif|webp|tiff?)$/i,
         oneOf: [
           {
+            // if the import url looks like "some.png?placeholder..."
             resourceQuery: /placeholder/,
             use: {
               loader: "webpack-image-placeholder-loader",
@@ -31,6 +32,7 @@ module.exports = {
             },
           },
           {
+            // if no previous resourceQuery match
             use: "file-loader",
           },
         ],
