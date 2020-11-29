@@ -8,6 +8,12 @@ Under the hood this package uses [fast-average-color](https://github.com/fast-av
 
 Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 
+## Examples
+
+[React](https://github.com/Calvin-LL/webpack-image-placeholder-loader/tree/master/examples/react)
+
+[Vue](https://github.com/Calvin-LL/webpack-image-placeholder-loader/tree/master/examples/vue)
+
 ## Install
 
 Install with npm:
