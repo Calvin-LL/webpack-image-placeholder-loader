@@ -30,27 +30,7 @@ yarn add webpack-image-placeholder-loader --dev
 
 ## Usage
 
-### Recommanded usage for Webpack v4
-
 #### Step 1
-
-##### Install [webpack-query-loader](https://github.com/Calvin-LL/webpack-query-loader)
-
-Install with npm:
-
-```bash
-npm install webpack-query-loader --save-dev
-```
-
-Install with yarn:
-
-```bash
-yarn add webpack-query-loader --dev
-```
-
-#### Step 2
-
-##### Configure [webpack-query-loader](https://github.com/Calvin-LL/webpack-query-loader)
 
 ###### webpack.config.js
 
@@ -59,33 +39,23 @@ module.exports = {
   ...
   module: {
     rules: [
+      ...
       {
-        test: /\.(png|jpe?g|svg|gif|webp|tiff?)/i,
-        use: [
-          // if import has query "?placeholder"
+        test: /\.(png|jpe?g|svg|gif|webp|tiff?)$/i,
+        oneOf: [
           {
-            loader: "webpack-query-loader",
-            options: {
-              resourceQuery: "placeholder",
-              use: {
-                loader: "webpack-image-placeholder-loader",
-                options: {
-                  format: "base64",
-                  size: 1,
-                  color: "sqrt",
-                  backgroundColor: "#FFF"
-                }
-              }
+            // if the import url looks like "some.png?placeholder..."
+            resourceQuery: /placeholder/,
+            use: {
+              loader: "webpack-image-placeholder-loader",
+              options: {
+                format: "hex",
+              },
             },
           },
           {
-            loader: "webpack-query-loader",
-            options: {
-              resourceQuery: "!placeholder",
-              use: {
-                loader: "file-loader", // or whatever loaders you want to use
-              }
-            },
+            // if no previous resourceQuery match
+            use: "file-loader",
           },
         ],
       },
@@ -95,7 +65,7 @@ module.exports = {
 
 ```
 
-#### Step 3
+#### Step 2
 
 ##### Use in code
 
@@ -109,7 +79,7 @@ To override options for one import, you can use queries
 import placeholderUrl from "./some_pic.png?placeholder&size=original";
 ```
 
-### Other usage for Webpack v4
+### Other usage
 
 With default options:
 
@@ -122,10 +92,6 @@ With specified options:
 ```javascript
 import placeholderUrl from "!!webpack-image-placeholder-loader!./some_pic.png?format=base64&size=1&color=sqrt&backgroundColor=white";
 ```
-
-### Recommanded usage for Webpack v5
-
-Same as Webpack v4 but use resourceQuery instead of webpack-query-loader
 
 ## Options
 
