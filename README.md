@@ -19,13 +19,13 @@ Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 Install with npm:
 
 ```bash
-npm install webpack-image-placeholder-loader --save-dev
+npm install --save-dev webpack-image-placeholder-loader
 ```
 
 Install with yarn:
 
 ```bash
-yarn add webpack-image-placeholder-loader --dev
+yarn add --dev webpack-image-placeholder-loader
 ```
 
 ## Usage
