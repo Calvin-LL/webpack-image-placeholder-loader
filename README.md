@@ -14,6 +14,10 @@ Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 
 [Vue](https://github.com/Calvin-LL/webpack-image-placeholder-loader/tree/main/examples/vue)
 
+[React example with other related loaders](https://github.com/Calvin-LL/react-responsive-images-example)
+
+[Vue example with other related loaders](https://github.com/Calvin-LL/vue-responsive-images-example)
+
 ## Install
 
 Install with npm:
