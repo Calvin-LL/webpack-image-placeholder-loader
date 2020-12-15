@@ -59,7 +59,7 @@
     "@types/sharp": "^0.26.0",
     "@types/tinycolor2": "^1.4.2",
     "@types/webpack": "^4.41.24",
-    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.9.0",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
