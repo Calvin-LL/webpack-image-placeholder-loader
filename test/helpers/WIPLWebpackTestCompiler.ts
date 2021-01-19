@@ -1,18 +1,20 @@
 import path from "path";
 
 import {
-  CompileOptions,
   WebpackTestBundle,
   WebpackTestCompiler,
 } from "@calvin-l/webpack-loader-test-util";
 
-interface WIPLCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
+interface WIPLCompileOptions
+  extends Omit<WebpackTestCompiler.CompileOptions, "entryFilePath"> {
   entryFileName?: string;
   loaderOptions?: any;
 }
 
-export default class WIPLWebpackTestCompiler extends WebpackTestCompiler {
-  compile(options: WIPLCompileOptions = {}): Promise<WebpackTestBundle> {
+export default class WIPLWebpackTestCompiler extends WebpackTestCompiler.default {
+  compile(
+    options: WIPLCompileOptions = {}
+  ): Promise<WebpackTestBundle.default> {
     const { loaderOptions = {}, entryFileName = "index.js" } = options;
     const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 
