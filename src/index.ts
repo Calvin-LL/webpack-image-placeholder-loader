@@ -152,7 +152,9 @@ async function getOutput(
         background: rgbaToRgb(tcColor.toRgb()),
       },
     })
-      .png()
+      .png({
+        compressionLevel: 9,
+      })
       .toBuffer()
   ).toString("base64")}`;
 }

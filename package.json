@@ -42,11 +42,11 @@
     "@calvin-l/webpack-loader-util": "^1.0.2",
     "fast-average-color": "^6.2.0",
     "schema-utils": "^3.0.0",
-    "sharp": "^0.27.2",
+    "sharp": "^0.28.1",
     "tinycolor2": "^1.4.2"
   },
   "devDependencies": {
-    "@calvin-l/webpack-loader-test-util": "^2.1.0",
+    "@calvin-l/webpack-loader-test-util": "^3.0.0",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "@types/jest": "^26.0.22",
