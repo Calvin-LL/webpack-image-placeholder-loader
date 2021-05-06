@@ -27,7 +27,7 @@ function App() {
               style={{
                 backgroundColor: require('./assets/Macaca_nigra_self-portrait_large.jpg?placeholder&format=svg-blur&blurQuality=10&esModule=false'),
               }}
-              src={require('./assets/Macaca_nigra_self-portrait_large.jpg?placeholder&format=svg-blur&esModule=false')}
+              src={image}
             />
             <span class="blur-grid-item__desc">Original</span>
           </div>
