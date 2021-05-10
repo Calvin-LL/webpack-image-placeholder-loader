@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Calvin-LL/webpack-image-placeholder-loader/compare/v1.1.23...v1.2.0) (2021-05-10)
+
+
+### Features
+
+* add blurred-svg format ([3ae6c20](https://github.com/Calvin-LL/webpack-image-placeholder-loader/commit/3ae6c209c9416ad2c6eb460438f2bc45a5e40c8d))
+
 ### [1.1.23](https://github.com/Calvin-LL/webpack-image-placeholder-loader/compare/v1.1.22...v1.1.23) (2021-04-06)
 
 ### [1.1.22](https://github.com/Calvin-LL/webpack-image-placeholder-loader/compare/v1.1.21...v1.1.22) (2021-01-19)
