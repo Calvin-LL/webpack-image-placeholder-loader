@@ -22,12 +22,12 @@
 // Adopted from
 // https://github.com/google/eleventy-high-performance-blog/blob/60902bfdaf764f5b16b2af62cf10f63e0e74efbc/_11ty/blurry-placeholder.js
 
+import DataURIParser from "datauri/parser";
 import sharp from "sharp";
 
 import { ImgSize } from "../index";
 
-const DatauriParser = require("datauri/parser");
-const parser = new DatauriParser();
+const parser = new DataURIParser();
 
 const ESCAPE_TABLE: any = {
   "#": "%23",
