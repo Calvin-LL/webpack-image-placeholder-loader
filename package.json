@@ -1,12 +1,13 @@
 {
   "name": "webpack-image-placeholder-loader",
-  "version": "1.1.23",
-  "description": "Generate a solid color image as placeholder",
+  "version": "1.2.0",
+  "description": "Generate a solid color image or blur as placeholder",
   "keywords": [
     "webpack",
     "loader",
     "pixel",
     "solid",
+    "blur",
     "color",
     "image",
     "placeholder"
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "@calvin-l/webpack-loader-util": "^1.0.2",
+    "datauri": "^3.0.0",
     "fast-average-color": "^6.2.0",
     "schema-utils": "^3.0.0",
     "sharp": "^0.28.1",

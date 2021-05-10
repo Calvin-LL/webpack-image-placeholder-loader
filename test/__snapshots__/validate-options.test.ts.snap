@@ -31,6 +31,16 @@ exports[`v4 validate options should throw an error on the "backgroundColor" opti
       object { … }"
 `;
 
+exports[`v4 validate options should throw an error on the "blurQuality" option with -1 value 1`] = `
+"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
+ - options.blurQuality should be >= 0.1 and <= 100."
+`;
+
+exports[`v4 validate options should throw an error on the "blurQuality" option with 0 value 1`] = `
+"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
+ - options.blurQuality should be >= 0.1 and <= 100."
+`;
+
 exports[`v4 validate options should throw an error on the "color" option with "#0" value 1`] = `
 "(Emitted value instead of an instance of Error) Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
       - options.color \\"#0\\" is not a valid color."
@@ -61,7 +71,7 @@ exports[`v4 validate options should throw an error on the "esModule" option with
 exports[`v4 validate options should throw an error on the "format" option with true value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
  - options.format should be one of these:
-   \\"base64\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
+   \\"base64\\" | \\"svg-blur\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
    -> Format of output"
 `;
 
@@ -106,6 +116,16 @@ exports[`v5 validate options should throw an error on the "backgroundColor" opti
       object { … }"
 `;
 
+exports[`v5 validate options should throw an error on the "blurQuality" option with -1 value 1`] = `
+"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
+ - options.blurQuality should be >= 0.1 and <= 100."
+`;
+
+exports[`v5 validate options should throw an error on the "blurQuality" option with 0 value 1`] = `
+"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
+ - options.blurQuality should be >= 0.1 and <= 100."
+`;
+
 exports[`v5 validate options should throw an error on the "color" option with "#0" value 1`] = `
 "(Emitted value instead of an instance of Error) Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
       - options.color \\"#0\\" is not a valid color."
@@ -136,7 +156,7 @@ exports[`v5 validate options should throw an error on the "esModule" option with
 exports[`v5 validate options should throw an error on the "format" option with true value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
  - options.format should be one of these:
-   \\"base64\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
+   \\"base64\\" | \\"svg-blur\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
    -> Format of output"
 `;
 
