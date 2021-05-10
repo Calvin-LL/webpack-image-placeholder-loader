@@ -13,7 +13,7 @@ describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
       failure: [0, -1],
     },
     blurQuality: {
-      success: [1, 100, 0.1],
+      success: [0.1, 1, 100],
       failure: [0, -1],
     },
     color: {

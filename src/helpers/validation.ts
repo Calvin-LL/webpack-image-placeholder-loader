@@ -31,3 +31,12 @@ export function validatebackgroundColor(
         backgroundColor
       )} is not a valid color.`;
 }
+
+export function validateBlurQuality(
+  blurQuality: FullOptions["blurQuality"]
+): true {
+  if (blurQuality != 0) return true;
+
+  throw `Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
+      - options.blurQuality ${blurQuality} is not a valid value.`;
+}

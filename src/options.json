@@ -19,17 +19,10 @@
       ]
     },
     "blurQuality": {
-      "description": "Quality of blur image. Only apply when the format is svg-blur",
-      "anyOf": [
-        {
-          "type": "number",
-          "minimum": 0.1,
-          "maximum": 100
-        },
-        {
-          "enum": ["original"]
-        }
-      ]
+      "description": "Quality of blur image. Only apply when the format is blurred-svg",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
     },
     "color": {
       "description": "Color of output image.",

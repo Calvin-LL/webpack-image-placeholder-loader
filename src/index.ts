@@ -14,7 +14,11 @@ import {
   rgbaToRgb,
 } from "./helpers/color";
 import getBlurredSvg from "./helpers/getBlurredSvg";
-import { validateColor, validatebackgroundColor } from "./helpers/validation";
+import {
+  validateBlurQuality,
+  validateColor,
+  validatebackgroundColor,
+} from "./helpers/validation";
 import schema from "./options.json";
 
 export interface ImgSize {
@@ -72,6 +76,7 @@ export default function (
     blurQuality,
   } = options;
 
+  validateBlurQuality(blurQuality);
   validateColor(color);
   validatebackgroundColor(backgroundColor);
 

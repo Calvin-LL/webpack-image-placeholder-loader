@@ -51,4 +51,16 @@ describe.each([4, 5] as const)('v%d "format" option', (webpackVersion) => {
 
     expect(bundle.execute("main.js")).toMatchSnapshot("result");
   });
+
+  it('should work with "blurred-svg" value', async () => {
+    const compiler = new WIPLWebpackTestCompiler({ webpackVersion });
+    const bundle = await compiler.compile({
+      loaderOptions: {
+        format: "blurred-svg",
+        blurQuality: 0.01,
+      },
+    });
+
+    expect(bundle.execute("main.js")).toMatchSnapshot("result");
+  });
 });

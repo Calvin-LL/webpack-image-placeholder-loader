@@ -10,6 +10,8 @@ Array [
 
 exports[`v4 "format" option should work with "base64" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
 
+exports[`v4 "format" option should work with "blurred-svg" value: result 1`] = `"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 2912 4030'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAABuvAAAbrwFeGpEcAAAADUlEQVQImWOISDD8DwAD5gHpGH7krQAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E"`;
+
 exports[`v4 "format" option should work with "hex" value: result 1`] = `"#6b7548"`;
 
 exports[`v4 "format" option should work with "rgb" value: result 1`] = `"rgb(107, 117, 72)"`;
@@ -25,6 +27,8 @@ Array [
 `;
 
 exports[`v5 "format" option should work with "base64" value: result 1`] = `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAADElEQVQI12PILvUAAAJ3ASkpvwmDAAAAAElFTkSuQmCC"`;
+
+exports[`v5 "format" option should work with "blurred-svg" value: result 1`] = `"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 2912 4030'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAABuvAAAbrwFeGpEcAAAADUlEQVQImWOISDD8DwAD5gHpGH7krQAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E"`;
 
 exports[`v5 "format" option should work with "hex" value: result 1`] = `"#6b7548"`;
 

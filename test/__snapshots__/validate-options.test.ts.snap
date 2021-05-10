@@ -33,12 +33,13 @@ exports[`v4 validate options should throw an error on the "backgroundColor" opti
 
 exports[`v4 validate options should throw an error on the "blurQuality" option with -1 value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
- - options.blurQuality should be >= 0.1 and <= 100."
+ - options.blurQuality should be >= 0 and <= 100.
+   -> Quality of blur image. Only apply when the format is blurred-svg"
 `;
 
 exports[`v4 validate options should throw an error on the "blurQuality" option with 0 value 1`] = `
-"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
- - options.blurQuality should be >= 0.1 and <= 100."
+"(Emitted value instead of an instance of Error) Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
+      - options.blurQuality 0 is not a valid value."
 `;
 
 exports[`v4 validate options should throw an error on the "color" option with "#0" value 1`] = `
@@ -118,12 +119,13 @@ exports[`v5 validate options should throw an error on the "backgroundColor" opti
 
 exports[`v5 validate options should throw an error on the "blurQuality" option with -1 value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
- - options.blurQuality should be >= 0.1 and <= 100."
+ - options.blurQuality should be >= 0 and <= 100.
+   -> Quality of blur image. Only apply when the format is blurred-svg"
 `;
 
 exports[`v5 validate options should throw an error on the "blurQuality" option with 0 value 1`] = `
-"Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
- - options.blurQuality should be >= 0.1 and <= 100."
+"(Emitted value instead of an instance of Error) Invalid options object. Image Placeholder Loader has been initialised using an options object that does not match the API schema.
+      - options.blurQuality 0 is not a valid value."
 `;
 
 exports[`v5 validate options should throw an error on the "color" option with "#0" value 1`] = `
