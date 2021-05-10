@@ -5,11 +5,15 @@ import WIPLWebpackTestCompiler from "./helpers/WIPLWebpackTestCompiler";
 describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
   const tests = {
     format: {
-      success: ["base64", "hex", "rgb", "array"],
+      success: ["base64", "blurred-svg", "hex", "rgb", "array"],
       failure: [true],
     },
     size: {
       success: [1, 100, "original"],
+      failure: [0, -1],
+    },
+    blurQuality: {
+      success: [0.1, 1, 100],
       failure: [0, -1],
     },
     color: {

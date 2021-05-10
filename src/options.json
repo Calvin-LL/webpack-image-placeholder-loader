@@ -4,7 +4,7 @@
   "properties": {
     "format": {
       "description": "Format of output",
-      "enum": ["base64", "hex", "rgb", "array"]
+      "enum": ["base64", "blurred-svg", "hex", "rgb", "array"]
     },
     "size": {
       "description": "Size of output image. Only apply when the format is base64",
@@ -17,6 +17,12 @@
           "enum": ["original"]
         }
       ]
+    },
+    "blurQuality": {
+      "description": "Quality of blur image. Only apply when the format is blurred-svg",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
     },
     "color": {
       "description": "Color of output image.",

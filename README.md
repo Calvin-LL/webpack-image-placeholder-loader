@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/webpack-image-placeholder-loader?style=flat)](https://www.npmjs.com/package/webpack-image-placeholder-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-This loader generates a color or solid color image from a given image for use as a placeholder.
+This loader generates a color or solid color image or blurred image from a given image for use as a placeholder.
 
 Under the hood this package uses [fast-average-color](https://github.com/fast-average-color/fast-average-color). See [fast-average-color](https://github.com/fast-average-color/fast-average-color) for [examples](https://github.com/fast-average-color/fast-average-color) of colors derived from images.
 
@@ -98,13 +98,14 @@ import placeholderUrl from "!!webpack-image-placeholder-loader!./some_pic.png?fo
 
 ## Options
 
-|                   Name                    |                 Type                 |  Default   |                                                                                                                       Description                                                                                                                        |
-| :---------------------------------------: | :----------------------------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|          **[`format`](#format)**          | `"base64", "hex", "rgb", or "array"` | `"base64"` |                                                                                                                 The format of the output                                                                                                                 |
-|            **[`size`](#size)**            |        `number or "original"`        |    `1`     |                                                                             The size of the output image if `format` is `"base64"`, no effect if the format is anything else                                                                             |
-|           **[`color`](#color)**           |           `string\|object`           |  `"sqrt"`  | An [algorithm](https://github.com/fast-average-color/fast-average-color/blob/master/docs/algorithms.md) ("simple", "sqrt" or "dominant") to generate a color from a given image, or a color string or color object to use in generating the output image |
-| **[`backgroundColor`](#backgroundcolor)** |           `string\|object`           |  `"#FFF"`  |                                                                                             The background color to use if the given image has transparency                                                                                              |
-|        **[`esModule`](#esmodule)**        |              `boolean`               |   `true`   |                                                                                          Whether the export is in ES modules syntax or CommonJS modules syntax                                                                                           |
+|                   Name                    |                        Type                         |  Default   |                                                                                                                        Description                                                                                                                        |
+| :---------------------------------------: | :-------------------------------------------------: | :--------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|          **[`format`](#format)**          | `"base64", "blurred-svg", "hex", "rgb", or "array"` | `"base64"` |                                                                                                                 The format of the output.                                                                                                                 |
+|            **[`size`](#size)**            |               `number or "original"`                |    `1`     |                                                                             The size of the output image if `format` is `"base64"`, no effect if the format is anything else.                                                                             |
+|     **[`blurQuality`](#blurQuality)**     |                      `number`                       |    `1`     |                                           The quality of blur image if `format` is `"blurred-svg"`, no effect if the format is anything else. Possible values from 0 (not including 0) to 100 (including 100).                                            |
+|           **[`color`](#color)**           |                  `string\|object`                   |  `"sqrt"`  | An [algorithm](https://github.com/fast-average-color/fast-average-color/blob/master/docs/algorithms.md) ("simple", "sqrt" or "dominant") to generate a color from a given image, or a color string or color object to use in generating the output image. |
+| **[`backgroundColor`](#backgroundcolor)** |                  `string\|object`                   |  `"#FFF"`  |                                                                                             The background color to use if the given image has transparency.                                                                                              |
+|        **[`esModule`](#esmodule)**        |                      `boolean`                      |   `true`   |                                                                                          Whether the export is in ES modules syntax or CommonJS modules syntax.                                                                                           |
 
 ### `format`
 
@@ -115,6 +116,7 @@ import placeholderUrl from "./some_pic.png?placeholder";
 ```
 
 - `format: "base64"`: `placeholderUrl === "data:image/png;base64,iVBORw0KG..."`
+- `format: "blurred-svg"`: `placeholderUrl === "data:image/svg+xml;charset=utf-8,%3Csvg xmlns=..."`
 - `format: "hex"`: `placeholderUrl === "#6b7548"`
 - `format: "rgb"`: `placeholderUrl === "rgb(107, 117, 72)"`
 - `format: "array"`: `placeholderUrl === [107, 117, 72]"`
@@ -152,6 +154,12 @@ will output `#FFFFFF`
 ### `backgroundColor`
 
 If an image has transparency, `backgroundColor` will be used as the background color. By default `backgroundColor` is white.
+
+### `blurQuality`
+
+When used with `"blurred-svg"`, the image is first shunk by this percentage, stretched, then blurred.
+
+`1` is 1/100 of the original quality. `100` is the original quality (DO NOT recommand using 100). Can be decimal numbers too, `0.1` would be 1/1000 of the original quality. The lower the value, the more blurry the image will be, and the smaller the size.
 
 ### `esModule`
 
