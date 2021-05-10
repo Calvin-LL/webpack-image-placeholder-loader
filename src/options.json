@@ -4,7 +4,7 @@
   "properties": {
     "format": {
       "description": "Format of output",
-      "enum": ["base64", "svg-blur", "hex", "rgb", "array"]
+      "enum": ["base64", "blurred-svg", "hex", "rgb", "array"]
     },
     "size": {
       "description": "Size of output image. Only apply when the format is base64",

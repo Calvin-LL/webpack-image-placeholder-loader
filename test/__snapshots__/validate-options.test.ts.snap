@@ -71,7 +71,7 @@ exports[`v4 validate options should throw an error on the "esModule" option with
 exports[`v4 validate options should throw an error on the "format" option with true value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
  - options.format should be one of these:
-   \\"base64\\" | \\"svg-blur\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
+   \\"base64\\" | \\"blurred-svg\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
    -> Format of output"
 `;
 
@@ -156,7 +156,7 @@ exports[`v5 validate options should throw an error on the "esModule" option with
 exports[`v5 validate options should throw an error on the "format" option with true value 1`] = `
 "Invalid options object. Image Placeholder Loader has been initialized using an options object that does not match the API schema.
  - options.format should be one of these:
-   \\"base64\\" | \\"svg-blur\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
+   \\"base64\\" | \\"blurred-svg\\" | \\"hex\\" | \\"rgb\\" | \\"array\\"
    -> Format of output"
 `;
 

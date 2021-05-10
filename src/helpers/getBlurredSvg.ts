@@ -24,66 +24,54 @@
 
 import sharp from "sharp";
 
+import { ImgSize } from "../index";
+
 const DatauriParser = require("datauri/parser");
 const parser = new DatauriParser();
 
-interface imgRect {
-  width: number | undefined;
-  height: number | undefined;
+const ESCAPE_TABLE: any = {
+  "#": "%23",
+  "%": "%25",
+  ":": "%3A",
+  "<": "%3C",
+  ">": "%3E",
+  '"': "'",
+};
+const ESCAPE_REGEX = new RegExp(Object.keys(ESCAPE_TABLE).join("|"), "g");
+
+function escaper(match: any): any {
+  return ESCAPE_TABLE[match];
 }
 
-function getBitmapDimensions_(imgRect: imgRect, quality: number): {
-  width: number;
-  height: number;
-} {
-  const PIXEL_TARGET = Math.round(10000 * (quality * 0.01));
-
-  // Aims for a bitmap of ~P pixels (w * h = ~P).
-  // Gets the ratio of the width to the height. (r = w0 / h0 = w / h)
-  const ratioWH = Number(imgRect.width) / Number(imgRect.height);
-  // Express the width in terms of height by multiply the ratio by the
-  // height. (h * r = (w / h) * h)
-  // Plug this representation of the width into the original equation.
-  // (h * r * h = ~P).
-  // Divide the bitmap size by the ratio to get the all expressions using
-  // height on one side. (h * h = ~P / r)
-  let bitmapHeight = PIXEL_TARGET / ratioWH;
-  // Take the square root of the height instances to find the singular value
-  // for the height. (h = sqrt(~P / r))
-  bitmapHeight = Math.sqrt(bitmapHeight);
-  // Divide the goal total pixel amount by the height to get the width.
-  // (w = ~P / h).
-  const bitmapWidth = PIXEL_TARGET / bitmapHeight;
-  return { width: Math.round(bitmapWidth), height: Math.round(bitmapHeight) };
-}
-
-export default async function getDataSvg(sharpImage: sharp.Sharp, imageSize: imgRect, blurQuality: number): Promise<string> {
-  const imgDimension = getBitmapDimensions_(imageSize, blurQuality);
+export default async function getBlurredSvg(
+  sharpImage: sharp.Sharp,
+  imageSize: ImgSize,
+  blurQuality: number
+): Promise<string> {
+  // divide the number by 100 and bound from 0 to 1
+  const resultSizeRatio = Math.max(0, Math.min(1, blurQuality / 100));
+  // if in the rare situation where width or height isn't found, default to 100
+  const imageWidth = imageSize.width ?? 100;
+  const imageHeight = imageSize.height ?? 100;
+  const targerImageWidth = Math.max(
+    1,
+    Math.round(imageWidth * resultSizeRatio)
+  );
+  const targerImageHeight = Math.max(
+    1,
+    Math.round(imageHeight * resultSizeRatio)
+  );
   const buffer = await sharpImage
     .rotate() // Manifest rotation from metadata
-    .resize(imgDimension.width, imgDimension.height)
+    .resize(targerImageWidth, targerImageHeight)
     .png()
     .toBuffer();
 
   const dataUri = parser.format(".png", buffer).content;
 
-  const ESCAPE_TABLE: any = {
-    "#": "%23",
-    "%": "%25",
-    ":": "%3A",
-    "<": "%3C",
-    ">": "%3E",
-    '"': "'",
-  };
-  const ESCAPE_REGEX = new RegExp(Object.keys(ESCAPE_TABLE).join("|"), "g");
-  function escaper(match: any): any {
-    return ESCAPE_TABLE[match];
-  }
-
-  let svg =
-    `<svg xmlns="http://www.w3.org/2000/svg"
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 ${imageSize.width} ${imageSize.height}">
+      viewBox="0 0 ${imageWidth} ${imageHeight}">
       <filter id="b" color-interpolation-filters="sRGB">
         <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
         <feComponentTransfer>

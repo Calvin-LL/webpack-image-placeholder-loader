@@ -13,19 +13,24 @@ import {
   rgbToRgbaArray,
   rgbaToRgb,
 } from "./helpers/color";
-import getSvgBlurry from "./helpers/getSvgBlurry";
+import getBlurredSvg from "./helpers/getBlurredSvg";
 import { validateColor, validatebackgroundColor } from "./helpers/validation";
 import schema from "./options.json";
 
+export interface ImgSize {
+  width: number | undefined;
+  height: number | undefined;
+}
+
 export interface Options {
-  readonly format?: "base64" | "svg-blur" | "hex" | "rgb" | "array";
+  readonly format?: "base64" | "blurred-svg" | "hex" | "rgb" | "array";
   readonly size?: number | "original";
   readonly color?:
-  | string
-  | "simple"
-  | "sqrt"
-  | "dominant"
-  | tinycolor.ColorInputWithoutInstance;
+    | string
+    | "simple"
+    | "sqrt"
+    | "dominant"
+    | tinycolor.ColorInputWithoutInstance;
   readonly backgroundColor?: string | tinycolor.ColorInputWithoutInstance;
   readonly esModule?: boolean;
   readonly blurQuality: number;
@@ -46,7 +51,7 @@ export default function (
     color: "sqrt",
     backgroundColor: "#FFF",
     esModule: true,
-    blurQuality: 100,
+    blurQuality: 1,
   };
   const options: FullOptions = {
     ...defaultOptions,
@@ -58,7 +63,14 @@ export default function (
     baseDataPath: "options",
   });
 
-  const { format, size, color, backgroundColor, esModule, blurQuality } = options;
+  const {
+    format,
+    size,
+    color,
+    backgroundColor,
+    esModule,
+    blurQuality,
+  } = options;
 
   validateColor(color);
   validatebackgroundColor(backgroundColor);
@@ -79,12 +91,25 @@ export default function (
 
 async function processImage(
   content: ArrayBuffer,
-  { format, size, color, backgroundColor, blurQuality }: Omit<FullOptions, "esModule">
+  {
+    format,
+    size,
+    color,
+    backgroundColor,
+    blurQuality,
+  }: Omit<FullOptions, "esModule">
 ): Promise<string | [number, number, number]> {
   const sharpImage = sharp(Buffer.from(content));
   const resultColor = await getColor(sharpImage, color, backgroundColor);
   const imageSize = await getSize(sharpImage);
-  const output = await getOutput(resultColor, size, format, imageSize, sharpImage, blurQuality);
+  const output = await getOutput(
+    resultColor,
+    size,
+    format,
+    imageSize,
+    sharpImage,
+    blurQuality
+  );
 
   return output;
 }
@@ -117,12 +142,7 @@ async function getColor(
   return { r: resultRgba[0], g: resultRgba[1], b: resultRgba[2] };
 }
 
-async function getSize(
-  sharpImage: sharp.Sharp
-): Promise<{
-  width: number | undefined;
-  height: number | undefined;
-}> {
+async function getSize(sharpImage: sharp.Sharp): Promise<ImgSize> {
   const { height, width } = await sharpImage.metadata();
 
   return { width, height };
@@ -135,16 +155,17 @@ async function getOutput(
   color: tinycolor.ColorFormats.RGB,
   size: FullOptions["size"],
   format: FullOptions["format"],
-  imageSize: { width: number | undefined; height: number | undefined },
+  imageSize: ImgSize,
   sharpImage: sharp.Sharp,
-  blurQuality: number,
+  blurQuality: number
 ): Promise<string | [number, number, number]> {
   const tcColor = tinycolor(color);
 
   if (format === "rgb") return tcColor.toRgbString();
   if (format === "hex") return tcColor.toHexString();
   if (format === "array") return rgbToRgbArray(tcColor.toRgb());
-  if (format === 'svg-blur') return getSvgBlurry(sharpImage, imageSize, blurQuality)
+  if (format === "blurred-svg")
+    return getBlurredSvg(sharpImage, imageSize, blurQuality);
 
   const width = size === "original" ? imageSize.width : size;
   const height = size === "original" ? imageSize.height : size;
