@@ -10,6 +10,10 @@ Supports JPEG, PNG, WebP, TIFF, GIF and SVG images.
 
 ## Examples
 
+|               Blurred Placeholder                |              Solid Color Placeholder               |
+| :----------------------------------------------: | :------------------------------------------------: |
+| ![Blurred Background](./screenshots/blurred.gif) | ![Solid Color Background](./screenshots/solid.gif) |
+
 [React](https://github.com/Calvin-LL/webpack-image-placeholder-loader/tree/main/examples/react)
 
 [Vue](https://github.com/Calvin-LL/webpack-image-placeholder-loader/tree/main/examples/vue)
