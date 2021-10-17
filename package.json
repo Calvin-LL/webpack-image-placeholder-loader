@@ -1,6 +1,6 @@
 {
   "name": "webpack-image-placeholder-loader",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Generate a solid color image or blurred image as placeholder",
   "keywords": [
     "webpack",
