@@ -1,3 +1,5 @@
+import type { IFastAverageColorRgba } from "fast-average-color";
+
 export function rgbToRgbaArray(
   rgb: tinycolor.ColorFormats.RGB
 ): IFastAverageColorRgba {
