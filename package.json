@@ -44,7 +44,7 @@
     "datauri": "^4.1.0",
     "fast-average-color": "^6.2.0",
     "schema-utils": "^3.1.1",
-    "sharp": "^0.28.3",
+    "sharp": "^0.30.2",
     "tinycolor2": "^1.4.2"
   },
   "devDependencies": {
