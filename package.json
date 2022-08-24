@@ -52,7 +52,7 @@
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@types/jest": "^27.0.1",
-    "@types/node": "^16.4.12",
+    "@types/node": "^18.7.13",
     "@types/sharp": "^0.28.5",
     "@types/tinycolor2": "^1.4.3",
     "@types/webpack": "^4.41.24",
